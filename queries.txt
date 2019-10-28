@@ -1,0 +1,138 @@
+DELETE features_profile
+PUT features_profile?include_type_name=true
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "autocomplete": {
+          "tokenizer": "autocomplete",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "autocomplete_search": {
+          "tokenizer": "lowercase"
+        }
+      },
+      "tokenizer": {
+        "autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 2,
+          "max_gram": 10
+        }
+      }
+    },
+    "number_of_shards": 2,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "labels": {
+      "properties": {
+        "label": {
+          "type": "text",
+          "analyzer": "autocomplete",
+          "search_analyzer": "autocomplete_search"
+        },
+        "suggestion_label":{
+          "type" : "completion"
+        },
+        "property":{
+          "type": "keyword"
+        }
+      }
+    }
+  }
+  
+}
+
+GET features_profile/_mapping
+GET features_profile/_search
+GET features_profile/_search
+{
+  "aggs": {
+    "prod": {
+      "terms": {
+        "field": "property",
+        "size": 10
+      }
+    }
+  },
+  "size": 0
+}
+
+GET features_profile/_search
+{
+  "query": {
+    "term": {
+      "property": {
+        "value": "Industria"
+      }
+    }
+  },"size": 20
+}
+PUT features_profile/_doc/1?refresh
+{
+  "label":"mineria / petroleo",
+  "suggestion_label": {
+  "input":[ 
+            "mineria / petroleo",
+            "petroleo"]
+    ,"weight": 3
+  }
+}
+POST features_profile/_search
+{
+  "suggest": {
+    "suggest": {
+      "prefix": "java",
+      "completion": {
+        "field": "suggestion_label",
+         "fuzzy" : {
+                    "fuzziness" : 2
+                }
+      }
+    }
+  },
+  "_source": ["label"]
+}
+GET features_profile/_search
+{
+  "query": {
+    "prefix": {
+      "label": {
+        "value": "m"
+      }
+    }
+  }
+}
+GET features_profile/_search
+{
+  "query": {
+    "match": {
+      "label": {
+        "query": "sol",
+        "fuzziness": 2,
+        "operator": "and"
+      }
+    }
+  },
+  "_source": ["label"]
+}
+POST features_profile/_search
+{
+ "suggest": {
+   "suggest": {
+     "prefix": "s",
+     "completion": {
+         "fuzzy" : {
+                    "fuzziness" : 2
+                },
+        "field" : "suggestion_label"
+     }
+   }
+ },
+ "_source": ["label"]
+}
+
+
+
