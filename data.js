@@ -1,3 +1,74 @@
+const names = ["Luis","Angel","Alfredo","Anthony","Dante","Gohan",
+               "Johan","Caroline","Valeria","Angela","Andres","Omar","Miguel"]
+const lastnames = ["Perez","Garcia","Sullca","Miranda","Calderon","Sanchez",
+                  "Huaracca","Flores","Quispe","Rodriguez","Rojas","Fernandez","Mamani"]               
+
+const industrias = [ 
+  "mineria / petroleo",
+  "petroleo / gas",
+  "agroindustria",
+  "agricola",
+  "agropecuaria",
+  "metalurgia",
+  "hidroelectrica",
+  "textil",
+  "conservas",
+  "cementera",
+   ]
+   
+const conocimientos = [ 
+    "mineria de datos",
+    "excel basico",
+    "excel intermedio",
+    "excel avanzado",
+    "autocad",       
+    "javascript",
+    "java",
+    "mysql",
+    "altos conocimientos en diversos lenguajes de progamacion",
+    "relaciones interpersonales",
+    "capacidad de liderazgo",
+    "bases de datos relacionales",
+       "mongo db"]
+const grados = [ "Bachillerato",
+                 "Título Profesional",
+                 "Maestría",
+                 "Doctorado",
+                 "Post-doctorado",
+                 "Secundaria - Completa",
+                 "Universitario - Estudiando",
+                ]         
+
+const puestos = ["Analista UX",
+                "Diseñador UI",
+                "Desarollador Fullstack",
+                "CEO - Director Ejecutivo",
+                "Director de Operaciones",
+                "Director de Marketing",
+                "Director de Recursos Humanos",
+                "Director Comercial",
+                "Director Financiero",
+                "Recepcionista - Atencion al cliente",
+                "ASESOR COMERCIAL EDUCATIVO",
+                "Cajero",
+                "Software Developer",
+                "Software Architect",
+                "Solution Architect",
+                                 ] 
+
+
+const universidades = [ 
+   "Universidad Nacional de Ingenieria",
+   "Universidad Nacional Mayor de San Marcos",
+   "Pontificia Universidad Catolica del Peru",
+   "Universidad de Lima",
+   "Universidad Nacional de Trujillo",
+   "UTEC",
+   "ESAN",
+   "UCV",
+   "TECSUP"    
+  ]
+
 const industria = [ {
   name : "mineria / petroleo",
   population : 4000
@@ -39,7 +110,7 @@ const industria = [ {
      population : 500
    }]
 
-const conocimientos = [ {
+const conocimiento = [ {
      name : "mineria de datos",
      population : 400
     },
@@ -148,7 +219,7 @@ const puesto = [ {
  },
  {
    name :  "Director de Recursos Humanos",
-   population : 1200                       
+   poppuestosulation : 1200                       
  },
  {
      name :   "Director Comercial",
@@ -183,7 +254,7 @@ const puesto = [ {
     population : 300
   }
  ]       
-
+ puestos
 const universidad = [ {
    name : "Universidad Nacional de Ingenieria",
    population : 50
@@ -229,7 +300,7 @@ labels : industria
 },
 {
 property : "Conocimientos",
-labels : conocimientos
+labels : conocimiento
 },
 {
 property : "Puesto",
@@ -244,6 +315,20 @@ property : "Universidad",
 labels : universidad  
 }
 ]
+const profiles = {
+  names : names ,
+  lastnames: lastnames,
+  experiences : {
+    industrias,
+    puestos
+  },
+  educations :{
+    conocimientos,
+    grados,
+    universidades
+  }
+}
 module.exports = {
-  features
+  features,
+  profiles
 }

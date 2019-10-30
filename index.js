@@ -13,16 +13,7 @@ const  main = async()=>{
         password: 'Jim6b2BbbXRwIulKJvWcCaLG'
       }
     })
-/*     const response = await client.search({
-      index : 'features_profile',
-      body : {
-        query: {
-          match_all: {}
-        }
-      }
-    }) */
-    
-    
+
     const body = generateBuckects(features)
     console.log(body)
     const {body: bulkResponse} = await client.bulk({
